@@ -23,7 +23,7 @@ public class HelloController extends CommonController {
 	 */
 	@GetMapping(value = "/hello", produces = "application/json; charset=UTF-8")
 	public ResponseEntity<GeneralResponse> getHello() {
-		return new ResponseEntity<GeneralResponse>(genGeneralResponse(helloRepository.findHello()), HttpStatus.OK);
+		return new ResponseEntity<>(genGeneralResponse(helloRepository.findHello()), HttpStatus.OK);
 	}
 	
 }

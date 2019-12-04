@@ -19,6 +19,7 @@
 		<java.version>1.8</java.version>
 		<sonar.version>3.6.0.1398</sonar.version>
 		<jacoco.version>0.8.4</jacoco.version>
+		<sonar.host.url>http://35.201.134.54:9453</sonar.host.url>
 	</properties>
 
 	<dependencies>
