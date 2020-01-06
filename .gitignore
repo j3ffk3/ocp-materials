@@ -23,7 +23,6 @@
 MANIFEST.MF
 _site/
 activemq-data
-bin
 build
 build.log
 dependency-reduced-pom.xml
