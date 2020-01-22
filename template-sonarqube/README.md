@@ -62,5 +62,20 @@ Please refer to after-clean/svc-clean.yaml
 ### clean Route resource
 Please refer to after-clean/route-clean.yaml
 
-## Step6 
+## Step6 Paste resources to raw-template.yaml by the following orders
+is-clean > dc-clean > svc-clean > route-clean
+The result refer to sonarqube-ephemeral.yaml
+
+## Step7 Test the template
+### Create test project 
+```
+oc new-project test-sonarqube-template
+```
+### New app by template 
+```
+oc new-app --template=sonarqube-ephemeral
+```
+### Access sonarqube
+
+
 
