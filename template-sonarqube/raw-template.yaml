@@ -1,0 +1,11 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: sonarqube
+metadata:
+  name: sonarqube-ephemeral
+  annotations:
+    openshift.io/display-name: Sonarqube(ephemeral)
+    description: Sonarqube code scan tool ephemeral .
+    tags: sonarqube
+objects:

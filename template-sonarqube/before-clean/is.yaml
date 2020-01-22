@@ -1,0 +1,40 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/image.dockerRepositoryCheck: 2020-01-22T11:00:42Z
+    creationTimestamp: 2020-01-22T11:00:39Z
+    generation: 2
+    name: sonarqube
+    namespace: sonar-make
+    resourceVersion: "23700166"
+    selfLink: /apis/image.openshift.io/v1/namespaces/sonar-make/imagestreams/sonarqube
+    uid: 6cf6fe6e-3d06-11ea-981e-0602d3a61226
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: docker-registry.default.svc:5000/openshift/sonarqube:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: docker-registry.default.svc:5000/sonar-make/sonarqube
+    tags:
+    - items:
+      - created: 2020-01-22T11:00:42Z
+        dockerImageReference: docker-registry.default.svc:5000/openshift/sonarqube@sha256:184b2b19fb010331a638bad0900efc2c107e59890e516cb3ea23da0852a8cc92
+        generation: 2
+        image: sha256:184b2b19fb010331a638bad0900efc2c107e59890e516cb3ea23da0852a8cc92
+      tag: latest
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

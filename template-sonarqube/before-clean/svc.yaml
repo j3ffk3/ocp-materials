@@ -1,0 +1,33 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2020-01-22T11:00:39Z
+    labels:
+      app: sonarqube
+    name: sonarqube
+    namespace: sonar-make
+    resourceVersion: "23700143"
+    selfLink: /api/v1/namespaces/sonar-make/services/sonarqube
+    uid: 6d1b1fe5-3d06-11ea-981e-0602d3a61226
+  spec:
+    clusterIP: 172.30.93.22
+    ports:
+    - name: 9000-tcp
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+    selector:
+      app: sonarqube
+      deploymentconfig: sonarqube
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

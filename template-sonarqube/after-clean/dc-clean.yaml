@@ -1,41 +1,9 @@
-apiVersion: template.openshift.io/v1
-kind: Template
-labels:
-  template: sonarqube
-metadata:
-  name: sonarqube-ephemeral
-  annotations:
-    openshift.io/display-name: Sonarqube(ephemeral)
-    description: Sonarqube code scan tool ephemeral .
-    tags: sonarqube
-objects:
-- apiVersion: image.openshift.io/v1
-  kind: ImageStream
-  metadata:
-    labels:
-      template: sonarqube-ephemeral
-    annotations:
-    name: sonarqube
-  spec:
-    lookupPolicy:
-      local: false
-    tags:
-    - annotations: null
-      from:
-        kind: DockerImage
-        name: docker-registry.default.svc:5000/openshift/sonarqube:latest
-      generation: 2
-      importPolicy: {}
-      name: latest
-      referencePolicy:
-        type: Source
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     annotations:
     labels:
       app: sonarqube
-      template: sonarqube-ephemeral
     name: sonarqube
   spec:
     replicas: 1
@@ -93,38 +61,3 @@ objects:
           name: sonarqube:latest
           namespace: openshift
       type: ImageChange
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-    labels:
-      app: sonarqube
-      template: sonarqube-ephemeral
-    name: sonarqube
-  spec:
-    ports:
-    - name: 9000-tcp
-      port: 9000
-      protocol: TCP
-      targetPort: 9000
-    selector:
-      app: sonarqube
-      deploymentconfig: sonarqube
-    sessionAffinity: None
-    type: ClusterIP
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    annotations:
-    labels:
-      app: sonarqube
-      template: sonarqube-ephemeral
-    name: sonarqube
-  spec:
-    port:
-      targetPort: 9000-tcp
-    to:
-      kind: Service
-      name: sonarqube
-      weight: 100
-    wildcardPolicy: None

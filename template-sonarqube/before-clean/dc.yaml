@@ -1,42 +1,19 @@
-apiVersion: template.openshift.io/v1
-kind: Template
-labels:
-  template: sonarqube
-metadata:
-  name: sonarqube-ephemeral
-  annotations:
-    openshift.io/display-name: Sonarqube(ephemeral)
-    description: Sonarqube code scan tool ephemeral .
-    tags: sonarqube
-objects:
-- apiVersion: image.openshift.io/v1
-  kind: ImageStream
-  metadata:
-    labels:
-      template: sonarqube-ephemeral
-    annotations:
-    name: sonarqube
-  spec:
-    lookupPolicy:
-      local: false
-    tags:
-    - annotations: null
-      from:
-        kind: DockerImage
-        name: docker-registry.default.svc:5000/openshift/sonarqube:latest
-      generation: 2
-      importPolicy: {}
-      name: latest
-      referencePolicy:
-        type: Source
+apiVersion: v1
+items:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2020-01-22T11:00:39Z
+    generation: 2
     labels:
       app: sonarqube
-      template: sonarqube-ephemeral
     name: sonarqube
+    namespace: sonar-make
+    resourceVersion: "23700221"
+    selfLink: /apis/apps.openshift.io/v1/namespaces/sonar-make/deploymentconfigs/sonarqube
+    uid: 6d079662-3d06-11ea-981e-0602d3a61226
   spec:
     replicas: 1
     revisionHistoryLimit: 10
@@ -56,12 +33,14 @@ objects:
     template:
       metadata:
         annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
         labels:
           app: sonarqube
           deploymentconfig: sonarqube
       spec:
         containers:
-        - image: sonarqube:latest
+        - image: docker.io/sonarqube@sha256:184b2b19fb010331a638bad0900efc2c107e59890e516cb3ea23da0852a8cc92
           imagePullPolicy: Always
           name: sonarqube
           ports:
@@ -92,39 +71,33 @@ objects:
           kind: ImageStreamTag
           name: sonarqube:latest
           namespace: openshift
+        lastTriggeredImage: docker.io/sonarqube@sha256:184b2b19fb010331a638bad0900efc2c107e59890e516cb3ea23da0852a8cc92
       type: ImageChange
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-    labels:
-      app: sonarqube
-      template: sonarqube-ephemeral
-    name: sonarqube
-  spec:
-    ports:
-    - name: 9000-tcp
-      port: 9000
-      protocol: TCP
-      targetPort: 9000
-    selector:
-      app: sonarqube
-      deploymentconfig: sonarqube
-    sessionAffinity: None
-    type: ClusterIP
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    annotations:
-    labels:
-      app: sonarqube
-      template: sonarqube-ephemeral
-    name: sonarqube
-  spec:
-    port:
-      targetPort: 9000-tcp
-    to:
-      kind: Service
-      name: sonarqube
-      weight: 100
-    wildcardPolicy: None
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: 2020-01-22T11:00:56Z
+      lastUpdateTime: 2020-01-22T11:00:56Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: 2020-01-22T11:00:43Z
+      lastUpdateTime: 2020-01-22T11:00:57Z
+      message: replication controller "sonarqube-1" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: ConfigChange
+      message: config change
+    latestVersion: 1
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
