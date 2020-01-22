@@ -1,3 +1,5 @@
+# How To use it!
+
 oc project openshift
 
 oc import-image elasticsearch:7.5.1  --from docker.io/elasticsearch:7.5.1  --confirm 
