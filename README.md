@@ -2,7 +2,10 @@
 Openshift Container Platform  experimental materials.
 
 ## insurance-backend
-A java application .
+A Java spring boot application .
+
+## insurance-backend
+An Angular frontend application .
 
 ## template-sonarqube
 It contains the following items.Let you know how to build templates.
