@@ -1,4 +1,4 @@
-# How To use this template?
+# How To use this elastic-stack template?
 
 ## Step1 login your okd by this command .
 
