@@ -11,6 +11,24 @@ ${AUTHOR} made this API, this is a mini insurance query API
 ```
 ${AUTHOR} should inject to OS environment.
 
+## Get insurance plans
+Endpoint
+```
+http://${YOUR_HOST}:8080/plans
+```
+
+## Get insurance plans by id 
+Endpoint
+```
+http://${YOUR_HOST}:8080/plan/${id}
+```
+
+## Execute soanarqube code scan and UT(Unit Test) coverage
+```
+mvn clean package sonar:sonar -Dsonar.host.url=${YOUR_SONAR_HOST}
+```
+
+
 ## H2 console
 Endpoint
 ```
@@ -27,17 +45,4 @@ sa
 password
 ```
 mypass
-```
-
-
-## Get insurance plans
-Endpoint
-```
-http://${YOUR_HOST}:8080/plans
-```
-
-## Get insurance plans by id 
-Endpoint
-```
-http://${YOUR_HOST}:8080/plan/${id}
 ```
