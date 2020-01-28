@@ -1,6 +1,9 @@
 # base image
 FROM docker.io/centos:latest
 
+# expose 8080 port
+EXPOSE 8080
+
 # build environment
 ENV SRC_ROOT=/tmp/ocp-materials/insurance-backend \
 	APP_ROOT=/opt/app-root \
