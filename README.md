@@ -9,8 +9,8 @@ An Angular frontend application .
 
 ## template-sonarqube
 It contains the following items.Let you know how to build templates.
-- before-clean : resources arn't cleaned yet.
-- before-clean : resources are cleaned.
+- before-clean : resources aren't cleaned yet.
+- after-clean : resources are cleaned.
 - raw-template.yaml : a basic template format.
 -sonarqube-ephemeral.yaml : an available sonarqube template.
 
