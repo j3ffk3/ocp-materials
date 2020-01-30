@@ -1,0 +1,13 @@
+kind: "BuildConfig"
+apiVersion: "build.openshift.io/v1"
+metadata:
+  name: "example-pipeline"
+spec:
+  source:
+    contextDir: example-pipeline
+    git:
+      uri: "https://github.com/j3ffk3/ocp-materials.git"
+      ref: "master"
+  strategy:
+    jenkinsPipelineStrategy:
+    type: JenkinsPipeline
