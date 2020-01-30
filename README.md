@@ -12,7 +12,7 @@ It contains the following items.Let you know how to build templates.
 - before-clean : resources aren't cleaned yet.
 - after-clean : resources are cleaned.
 - raw-template.yaml : a basic template format.
--sonarqube-ephemeral.yaml : an available sonarqube template.
+- sonarqube-ephemeral.yaml : an available sonarqube template.
 
 
 ## template-elastic-stack
