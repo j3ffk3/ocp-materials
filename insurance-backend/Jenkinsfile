@@ -1,0 +1,69 @@
+pipeline {
+    options {
+        // set a timeout of 60 minutes for this pipeline
+        timeout(time: 60, unit: 'MINUTES')
+    }
+	
+	agent {
+      node {
+        label 'master'
+      }
+    }
+
+    environment {
+		CICD_PROJECT ="life-insurance-ci-cd"
+        PROJECT = "life-insurance"
+        APP_GIT_URL = "https://github.com/j3ffk3/ocp-materials.git"
+        APP_NAME = "insurance-backend"
+    }
+	
+    stages {
+		// Clone source 
+        stage('Clone source') {
+			steps{
+				git 'https://github.com/j3ffk3/ocp-materials.git'
+				sh 'pwd'
+			}
+        }
+		// Unit test
+        stage('Unit test') {
+			steps{
+				sh 'echo unit test...'
+				dir(env.APP_NAME){
+					sh '''
+						pwd
+						oc whoami
+					'''
+				}
+			}
+        }
+		// Code scan and analysis
+        stage('Code scan and analysis') {
+			steps{
+				sh 'echo code analysis...'
+			}
+        }
+		
+		// Manual approval
+		stage('Confirm deployment') {
+			steps {
+				timeout(time: 60, unit: 'MINUTES') {
+					input message: "Please confirm if you want to deploy"
+				}
+			}
+		}
+		
+		// Deploy
+		stage('Deploy') {
+			steps{
+				script{
+					openshift.withCluster() {
+						openshift.withProject(env.PROJECT) {
+							echo "stage 1: using project: ${openshift.project()} in cluster ${openshift.cluster()}"
+						}
+					}
+				}
+			}
+		}
+	}
+}
