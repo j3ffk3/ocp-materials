@@ -1,4 +1,4 @@
 export const environment = {
-  API_HOST: 'http://localhost:8080',
+  API_HOST: 'http://ins-test:8080',
   production: true
 };
