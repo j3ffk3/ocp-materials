@@ -9,11 +9,11 @@ An Angular frontend application .
 
 ## [Docker build] insurance-backend-docker-build
 
-## [Source To Image] 
+## [Source To Image] s2i-angular-8-centos8
 
-## [Source To Image] 
+## [Source To Image] s2i-java-8-centos8
 
-## [Pipeline] example-pipeline
+## [Pipeline] example-pipeline 
 
 ## [Template] template-sonarqube
 It contains the following items.Let you know how to build templates.
