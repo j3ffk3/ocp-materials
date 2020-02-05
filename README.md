@@ -12,21 +12,21 @@ A demo shows docker build
 
 ## [Source To Image] s2i-angular-8-centos8
 A angular builder image source file.It will make a builder Image by the following command.
--DOCKER
+- **DOCKER**
 ```
 docker build -t s2i-angular-8-centos8:latest .
 ```
--PODMAN
+- **PODMAN**
 ```
 podman build -t s2i-angular-8-centos8:latest .
 ```
 ## [Source To Image] s2i-java-8-centos8
 A java builder image source file.It will make a builder Image by the following command.
--DOCKER
+- **DOCKER**
 ```
 docker build -t s2i-java-8-centos8:latest .
 ```
--PODMAN
+- **PODMAN**
 ```
 podman build -t s2i-java-8-centos8:latest .
 ```
