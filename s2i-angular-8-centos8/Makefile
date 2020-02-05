@@ -1,4 +1,4 @@
-IMAGE_NAME = s2i-spring-boot
+IMAGE_NAME = s2i-angular-8-centos8
 
 .PHONY: build
 build:

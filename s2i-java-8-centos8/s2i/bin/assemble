@@ -1,0 +1,40 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'tpc-openjdk-11-centos8' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 'tpc-openjdk-11-centos8' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+# Restore artifacts from the previous build (if they exist).
+#
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/. ./
+fi
+
+# Config Maven
+if [ -n "$MAVEN_MIRROR_URL" ]; then
+  echo "---> Pull dependencies from $MAVEN_MIRROR_URL..."
+  echo '<?xml version="1.0" encoding="UTF-8"?> <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"> <pluginGroups /> <proxies /> <servers /> <mirrors> <mirror> <id>local-nexus</id> <name>Nexus</name> <url>${MAVEN_MIRROR_URL}</url> <mirrorOf>*</mirrorOf> </mirror> </mirrors> <profiles /> </settings>' > /usr/share/maven/conf/settings.xml
+fi
+
+# Build
+echo "---> Building application from source..."
+mvn -v
+cd /tmp/src/
+mvn clean package -Dmaven.test.skip=true
+
+# Install
+echo "---> Install application..."
+cd /opt/app-root/
+cp /tmp/src/target/*.jar ./app.jar
+
+# Clean
+rm -rf /tmp/src/

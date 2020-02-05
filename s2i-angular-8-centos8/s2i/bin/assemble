@@ -1,0 +1,43 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'tpc-angular-8-centos8' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 'tpc-angular-8-centos8' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+# build application
+echo "---> Building application from source..."
+cd /tmp/src/
+
+if [ -n "$NPM_MIRROR_URL" ];
+then
+	echo "---> Pull dependency from $NPM_MIRROR_URL..."
+	npm config set registry $NPM_MIRROR_URL
+fi
+
+npm i
+
+if [ -n "$NG_PROFILE" ];
+then
+	echo "---> Build by ng build --configuration=$NG_PROFILE ..."
+	ng build --configuration=$NG_PROFILE
+else
+	echo "---> No NG_PROFILE ! Build by ng build..."
+	ng build
+fi
+
+
+
+# Install App
+echo "---> Install application..."
+cp ./dist/*/* /var/www/html
+
+# Clean 
+rm -rf /tmp/src/
