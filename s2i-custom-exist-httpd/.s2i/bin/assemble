@@ -17,7 +17,9 @@ cp -af /tmp/src/index.html ./
 #=========================================
 # Customize content
 #=========================================
+echo "---> Start customized operation."
 echo "my custom infomation" > ./info.html
+echo "---> Customized operation finished."
 #=========================================
 # Customize content
 #=========================================
