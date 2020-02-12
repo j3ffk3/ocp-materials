@@ -25,7 +25,7 @@ http://${YOUR_HOST}:8080/plan/${id}
 
 ## Health check endpoint
 ```
-http://${YOUR_HOST}:8080/actuator/health
+http://${YOUR_HOST}:8080/health
 ```
 
 ## Execute soanarqube code scan and UT(Unit Test) coverage
