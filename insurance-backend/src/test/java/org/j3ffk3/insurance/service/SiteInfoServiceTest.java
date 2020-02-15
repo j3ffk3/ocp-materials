@@ -11,9 +11,10 @@ public class SiteInfoServiceTest {
 
 	@Autowired
 	SiteInfoService siteInfoService;
-	
+
 	@Test
 	void generateSiteInfoTest() {
-		assertEquals(siteInfoService.generateSiteInfo(), "null made this API, this is a mini insurance query API");
+		assertEquals(siteInfoService.generateSiteInfo().substring(5, 54),
+				"made this API, this is a mini insurance query API");
 	}
 }

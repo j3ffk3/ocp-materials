@@ -11,6 +11,6 @@ public class SiteInfoService {
 	private Environment env;
 
 	public String generateSiteInfo() {
-		return env.getProperty("AUTHOR") + " made this API, this is a mini insurance query API [Congrats! you know what is Image Change Trigger]";
+		return env.getProperty("AUTHOR") + " made this API, this is a mini insurance query API";
 	}
 }
